@@ -92,6 +92,7 @@ public class HeaderExchangeClient implements ExchangeClient {
 
     @Override
     public CompletableFuture<Object> request(Object request, int timeout, ExecutorService executor) throws RemotingException {
+        // org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeChannel.request
         return channel.request(request, timeout, executor);
     }
 

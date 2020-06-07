@@ -88,6 +88,7 @@ final class ReferenceCountExchangeClient implements ExchangeClient {
 
     @Override
     public CompletableFuture<Object> request(Object request, int timeout, ExecutorService executor) throws RemotingException {
+        // org.apache.dubbo.remoting.exchange.support.header.HeaderExchangeClient.request
         return client.request(request, timeout, executor);
     }
 

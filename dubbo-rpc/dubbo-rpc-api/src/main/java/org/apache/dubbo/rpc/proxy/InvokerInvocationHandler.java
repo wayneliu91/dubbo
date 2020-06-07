@@ -70,7 +70,7 @@ public class InvokerInvocationHandler implements InvocationHandler {
             rpcInvocation.put(Constants.CONSUMER_MODEL, consumerModel);
             rpcInvocation.put(Constants.METHOD_MODEL, consumerModel.getMethodModel(method));
         }
-
+        // 服务调用，@see {org.apache.dubbo.rpc.cluster.support.wrapper.MockClusterInvoker.invoke}
         return invoker.invoke(rpcInvocation).recreate();
     }
 }

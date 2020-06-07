@@ -160,6 +160,7 @@ public abstract class AbstractInvoker<T> implements Invoker<T> {
 
         AsyncRpcResult asyncResult;
         try {
+            // 异步调用，org.apache.dubbo.rpc.protocol.dubbo.DubboInvoker.doInvoke
             asyncResult = (AsyncRpcResult) doInvoke(invocation);
         } catch (InvocationTargetException e) { // biz exception
             Throwable te = e.getTargetException();

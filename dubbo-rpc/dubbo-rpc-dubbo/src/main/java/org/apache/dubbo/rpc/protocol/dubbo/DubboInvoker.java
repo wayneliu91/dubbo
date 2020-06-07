@@ -86,6 +86,7 @@ public class DubboInvoker<T> extends AbstractInvoker<T> {
         inv.setAttachment(PATH_KEY, getUrl().getPath());
         inv.setAttachment(VERSION_KEY, version);
 
+        // 获取客户端
         ExchangeClient currentClient;
         if (clients.length == 1) {
             currentClient = clients[0];
@@ -101,8 +102,9 @@ public class DubboInvoker<T> extends AbstractInvoker<T> {
                 return AsyncRpcResult.newDefaultAsyncResult(invocation);
             } else {
                 ExecutorService executor = getCallbackExecutor(getUrl(), inv);
-                CompletableFuture<AppResponse> appResponseFuture =
-                        currentClient.request(inv, timeout, executor).thenApply(obj -> (AppResponse) obj);
+                // 客户端发起请求，org.apache.dubbo.rpc.protocol.dubbo.ReferenceCountExchangeClient.request
+                CompletableFuture<AppResponse> appResponseFuture = currentClient.request(inv, timeout, executor)
+                                                                                .thenApply(obj -> (AppResponse) obj);
                 // save for 2.6.x compatibility, for example, TraceFilter in Zipkin uses com.alibaba.xxx.FutureAdapter
                 FutureContext.getContext().setCompatibleFuture(appResponseFuture);
                 AsyncRpcResult result = new AsyncRpcResult(appResponseFuture, inv);
