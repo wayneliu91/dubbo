@@ -34,7 +34,7 @@ import static org.apache.dubbo.common.constants.CommonConstants.COMMA_SPLIT_PATT
 
 /**
  * Main. (API, Static, ThreadSafe)
- *
+ * 加载 dubbo 容器的入口
  * This class is entry point loading containers.
  */
 public class Main {
@@ -44,7 +44,7 @@ public class Main {
     public static final String SHUTDOWN_HOOK_KEY = "dubbo.shutdown.hook";
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
-
+    // 类加载时即初始化，用于加载 dubbo 的 spi
     private static final ExtensionLoader<Container> LOADER = ExtensionLoader.getExtensionLoader(Container.class);
 
     private static final ReentrantLock LOCK = new ReentrantLock();

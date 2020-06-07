@@ -84,13 +84,13 @@ import static org.apache.dubbo.common.constants.CommonConstants.VERSION_KEY;
  * <li>home/user1/router.js?type=script <br>
  * for this case, url protocol = null, url host = home, url path = user1/router.js
  * </ul>
+ * 由服务提供方生成，经注册中心传递给消费方
  *
  * @see java.net.URL
  * @see java.net.URI
  */
 public /*final**/
 class URL implements Serializable {
-
     private static final long serialVersionUID = -1985165475234910535L;
 
     private final String protocol;

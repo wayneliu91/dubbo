@@ -299,7 +299,7 @@ public class DubboProtocol extends AbstractProtocol {
 
             }
         }
-
+        // 建立和注册中心的连接
         openServer(url);
         optimizeSerialization(url);
 
@@ -316,8 +316,10 @@ public class DubboProtocol extends AbstractProtocol {
             if (server == null) {
                 synchronized (this) {
                     server = serverMap.get(key);
+                    // 如果没有连接，则建立连接
                     if (server == null) {
-                        serverMap.put(key, createServer(url));
+                        server = createServer(url);
+                        serverMap.put(key, server);
                     }
                 }
             } else {
